@@ -11,28 +11,28 @@ spring:
   application:
     name: wb
   datasource:
-    names: plat
-    plat:
-      driver-class-name: oracle.jdbc.OracleDriver
-      url: jdbc:oracle:thin:@10.1.16.9:1521:ACTVDB
-      username: JOIN_ACTIVITY
-      password: act_password
+    names: business,plat
+    business:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/tl3d_cyc?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
       max-active: 1
       initial-size: 1
       min-idle: 1
-#    plat1:
-#      driver-class-name: com.mysql.jdbc.Driver
-#      url: jdbc:mysql://10.1.16.9:3306/jw_test?useUnicode=true&characterEncoding=utf-8
-#      username: root
-#      password: qweqwe
-#      max-active: 300
-#      initial-size: 300
-#      min-idle: 300
+    plat:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/tl3d_cyc?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: 123456
+      max-active: 1
+      initial-size: 1
+      min-idle: 1
   redis:
     # Redis数据库索引（默认为0）
     database: 0
     # Redis服务器地址
-    host: 10.1.16.10
+    host: 127.0.0.1
     # Redis服务器连接端口
     port: 6379
     # Redis服务器连接密码（默认为空）
