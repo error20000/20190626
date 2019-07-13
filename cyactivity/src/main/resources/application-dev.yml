@@ -1,4 +1,4 @@
-debug: true
+debug: false
 server:
   port: 8680
   display-name: join-wb
@@ -16,7 +16,7 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/tl3d_cyc?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: 123456
+      password: "123456"
       max-active: 1
       initial-size: 1
       min-idle: 1
@@ -24,7 +24,7 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://127.0.0.1:3306/tl3d_cyc?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: 123456
+      password: "123456"
       max-active: 1
       initial-size: 1
       min-idle: 1
