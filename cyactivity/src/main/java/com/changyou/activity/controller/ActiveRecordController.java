@@ -73,6 +73,9 @@ public class ActiveRecordController extends BaseController {
 	public Result<ActiveRecordEntity> info(HttpServletRequest request) {
 		String wxId = getWxId(request);
 		ActiveRecordEntity res = service.findOne(wxId);
+		if(res == null) {
+			return new Result<>().setCodeAndMessage(ResCode.ResCode20000).setData(null);
+		}
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("wxId", res.getWxId());
 		data.put("date", res.getDate());
@@ -93,6 +96,9 @@ public class ActiveRecordController extends BaseController {
 	@GetMapping("/config")
 	public Result<ActiveConfigEntity> config() {
 		ActiveConfigEntity res = cService.findOne();
+		if(res == null) {
+			return new Result<>().setCodeAndMessage(ResCode.ResCode20015).setData(res);
+		}
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("startDate", res.getStartDate());
 		data.put("endDate", res.getEndDate());
