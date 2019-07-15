@@ -1,6 +1,8 @@
 package com.changyou.activity.service;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,13 +42,17 @@ public class ActiveRecordService extends SuperService<ActiveRecordMapper, Active
 		long curTime = System.currentTimeMillis();
 		if(config.getStartDate().getTime() > curTime) {
 			return new Result<>().setCodeAndMessage(ResCode.ResCode20015);
-		}else if(config.getStartDate().getTime() < curTime) {
+		}else if(config.getEndDate().getTime() < curTime) {
 			return new Result<>().setCodeAndMessage(ResCode.ResCode20016);
 		}
 		//判断是否已参与
 		ActiveRecordEntity test = findOne(obj.getWxId());
 		if(test != null) {
-			return new Result<>().setCodeAndMessage(ResCode.ResCode20011).setData(test);
+			Map<String, String> data = new HashMap<String, String>();
+			data.put("wxId", test.getWxId());
+			data.put("giftName", test.getGiftName());
+			data.put("giftCode", test.getGiftCode());
+			return new Result<>().setCodeAndMessage(ResCode.ResCode20011).setData(data);
 		}
 		//获取礼包码
 		GiftCodeEntity giftCode = null;
@@ -63,12 +69,16 @@ public class ActiveRecordService extends SuperService<ActiveRecordMapper, Active
 		//保存
 		obj.setId(SnowflakeIdWorker.generateId()+"");
 		obj.setDate(new Date());
+		obj.setGiftName(giftCode.getGiftName());
 		obj.setGiftCode(giftCode.getGiftCode());
 		int res = baseMapper.insert(obj);
 		if(res == 0) {
 			return new Result<>().setCodeAndMessage(ResCode.ResCode20002);
 		}else {
-			return new Result<>().setCodeAndMessage(ResCode.ResCode20000).setData(giftCode.getGiftCode());
+			Map<String, String> data = new HashMap<String, String>();
+			data.put("giftName", giftCode.getGiftName());
+			data.put("giftCode", giftCode.getGiftCode());
+			return new Result<>().setCodeAndMessage(ResCode.ResCode20000).setData(data);
 		}
     }
     

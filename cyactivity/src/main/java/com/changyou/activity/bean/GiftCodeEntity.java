@@ -28,6 +28,7 @@ public class GiftCodeEntity extends SuperEntity {
 	private String sysCompanyCode;
 	private String bpmStatus;
 
+	private String giftName;
 	private String giftCode;
 	private int status;
 

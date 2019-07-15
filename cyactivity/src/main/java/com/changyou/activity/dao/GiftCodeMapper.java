@@ -10,7 +10,7 @@ import com.cyou.common.datasource.mapper.SuperMapper;
 @Mapper
 public interface GiftCodeMapper extends SuperMapper<GiftCodeEntity> {
 
-    @Select("select * from ds_gift_code where status = 0 ")
+    @Select("select * from ds_gift_code where status = 0 limit 1 ")
     GiftCodeEntity findOne();
     
 

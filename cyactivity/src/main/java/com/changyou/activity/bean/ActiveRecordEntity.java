@@ -30,6 +30,7 @@ public class ActiveRecordEntity extends SuperEntity {
 
 	private String wxId;
 	private Date date;
+	private String giftName;
 	private String giftCode;
 	private String content;
 	private String sex;

@@ -37,7 +37,7 @@ public class ActiveRecordController extends BaseController {
 	 */
 	@SuppressWarnings("unchecked")
 	@PostMapping("/save")
-	public Result<ActiveRecordEntity> insertLevelLog(HttpServletRequest request) {
+	public Result<ActiveRecordEntity> save(HttpServletRequest request) {
 
     	//判断参数
     	String content = request.getParameter("content");
@@ -108,5 +108,6 @@ public class ActiveRecordController extends BaseController {
     private String getWxId(HttpServletRequest request) {
     	WxUserEntity user = getWeixinUser(request);
     	return user.getWxId();
+    	//return "123";
     }
 }

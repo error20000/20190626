@@ -11,7 +11,7 @@
  Target Server Version : 50562
  File Encoding         : 65001
 
- Date: 12/07/2019 18:48:16
+ Date: 15/07/2019 11:52:14
 */
 
 SET NAMES utf8mb4;
@@ -41,6 +41,10 @@ CREATE TABLE `ds_active_config`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Records of ds_active_config
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for ds_active_record
 -- ----------------------------
 DROP TABLE IF EXISTS `ds_active_record`;
@@ -57,8 +61,9 @@ CREATE TABLE `ds_active_record`  (
   `bpm_status` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '流程状态',
   `wx_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '微信id',
   `date` datetime NULL DEFAULT NULL COMMENT '参与日期',
+  `gift_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '获得的礼包名称',
   `gift_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '获得的礼包码',
-  `content` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '答题记录',
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL COMMENT '答题记录',
   `sex` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '性别',
   `birthday` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '生日',
   `app_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '应用代码',
@@ -66,6 +71,10 @@ CREATE TABLE `ds_active_record`  (
   `version_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '活动版本',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of ds_active_record
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for ds_gift_code
@@ -82,6 +91,7 @@ CREATE TABLE `ds_gift_code`  (
   `sys_org_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属部门',
   `sys_company_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '所属公司',
   `bpm_status` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '1' COMMENT '流程状态',
+  `gift_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '礼包名称',
   `gift_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '礼包码',
   `status` int(11) NULL DEFAULT NULL COMMENT '状态',
   `app_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '应用代码',
@@ -93,8 +103,8 @@ CREATE TABLE `ds_gift_code`  (
 -- ----------------------------
 -- Records of ds_gift_code
 -- ----------------------------
-INSERT INTO `ds_gift_code` VALUES ('4028eac36be50dd8016be51ef5b9000c', '管理员', 'admin', '2019-07-12 15:38:59', NULL, NULL, NULL, 'A03', 'A03', '1', 'test1', 0, NULL, NULL, NULL);
-INSERT INTO `ds_gift_code` VALUES ('4028eac36be50dd8016be51f173c000d', '管理员', 'admin', '2019-07-12 15:39:08', NULL, NULL, NULL, 'A03', 'A03', '1', 'test2', 0, NULL, NULL, NULL);
+INSERT INTO `ds_gift_code` VALUES ('4028eac36be50dd8016be51ef5b9000c', '管理员', 'admin', '2019-07-12 15:38:59', NULL, NULL, NULL, 'A03', 'A03', '1', '100绑元礼包', 'test1', 0, NULL, NULL, NULL);
+INSERT INTO `ds_gift_code` VALUES ('4028eac36be50dd8016be51f173c000d', '管理员', 'admin', '2019-07-12 15:39:08', NULL, NULL, NULL, 'A03', 'A03', '1', '500绑元礼包', 'test2', 0, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for ds_result_config
