@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.cyou.activity.util.SpringContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +52,9 @@ public class ActiveRecordController extends BaseController {
 
     	//保存
     	String wxId = getWxId(request);
+    	if(null == wxId){
+			return new Result<>().setCodeAndMessage(ResCode.ResCode20001);
+		}
     	ActiveRecordEntity obj = new ActiveRecordEntity();
     	obj.setWxId(wxId);
     	obj.setContent(content);
@@ -72,6 +76,9 @@ public class ActiveRecordController extends BaseController {
 	@PostMapping("/info")
 	public Result<ActiveRecordEntity> info(HttpServletRequest request) {
 		String wxId = getWxId(request);
+		if(wxId == null) {
+			return new Result<>().setCodeAndMessage(ResCode.ResCode20000).setData(null);
+		}
 		ActiveRecordEntity res = service.findOne(wxId);
 		if(res == null) {
 			return new Result<>().setCodeAndMessage(ResCode.ResCode20000).setData(null);
@@ -79,6 +86,7 @@ public class ActiveRecordController extends BaseController {
 		Map<String, Object> data = new HashMap<String, Object>();
 		data.put("wxId", res.getWxId());
 		data.put("date", res.getDate());
+		data.put("giftName", res.getGiftName());
 		data.put("giftCode", res.getGiftCode());
 		data.put("content", res.getContent());
 		data.put("sex", res.getSex());
@@ -106,6 +114,8 @@ public class ActiveRecordController extends BaseController {
 	}
     
     private String getWxId(HttpServletRequest request) {
+		if(SpringContextUtil.profileIsConTest())
+			return request.getParameter("openid");
     	WxUserEntity user = getWeixinUser(request);
     	return user.getWxId();
     	//return "123";
